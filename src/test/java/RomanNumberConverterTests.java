@@ -19,34 +19,12 @@ public class RomanNumberConverterTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConvertIfNullThenException(){
-        RomanNumberConverter converter = new RomanNumberConverter();
-        converter.convert(null);
+    public void ifZeroThenException(){
+        converter.convertToRoman(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testConvertIfEmptyStringThenException(){
-        RomanNumberConverter converter = new RomanNumberConverter();
-        converter.convert("");
-    }
-
-    @Test()
-    public void testConvertIfRomanOneThenArabicOne(){
-        assertEquals(1, converter.convert("I"));
-    }
-
-    @Test()
-    public void testConvertIfRomanTwoThenArabicTwo(){
-        assertEquals(2, converter.convert("II"));
-    }
-
-    @Test()
-    public void testConvertIfRomanThreeThenArabicThree(){
-        assertEquals(3, converter.convert("III"));
-    }
-
-    @Test()
-    public void testConvertIfRomanFiveThenArabicFive(){
-        assertEquals(5, converter.convert("V"));
+    public void ifMinusThenException(){
+        converter.convertToRoman(-1);
     }
 }
