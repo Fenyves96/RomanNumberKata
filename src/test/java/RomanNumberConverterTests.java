@@ -25,8 +25,15 @@ public class RomanNumberConverterTests {
     }
 
     @Test
-    public void ifOneThenI() {
+    public void testDefaults(){
+        //I, V, X, L, C, D, and M
         assertEquals("I", converter.convertToRoman(1));
+        assertEquals("V", converter.convertToRoman(5));
+        assertEquals("X", converter.convertToRoman(10));
+        assertEquals("L", converter.convertToRoman(50));
+        assertEquals("C", converter.convertToRoman(100));
+        assertEquals("D", converter.convertToRoman(500));
+        assertEquals("M", converter.convertToRoman(1000));
     }
 
     @Test
