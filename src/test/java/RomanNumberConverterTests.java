@@ -2,6 +2,7 @@ import hu.fenyvesvolgyimate.RomanNumberConverter.RomanNumberConverter;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
 
 public class RomanNumberConverterTests {
@@ -11,11 +12,6 @@ public class RomanNumberConverterTests {
     @Before
     public void setUp(){
         converter = new RomanNumberConverter();
-    }
-
-    @Test
-    public void testConstructorWorks(){
-        RomanNumberConverter converter = new RomanNumberConverter();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -66,5 +62,54 @@ public class RomanNumberConverterTests {
     @Test
     public void ifEightThenVIII() {
         assertEquals("VIII", converter.convertToRoman(8));
+    }
+
+    @Test
+    public void ifNineThenIX(){
+        assertEquals("IX", converter.convertToRoman(9));
+    }
+
+    @Test
+    public void ifTenThenX(){
+        assertEquals("X", converter.convertToRoman(10));
+    }
+
+    @Test
+    public void ifElevenThenXI(){
+        assertEquals("XI", converter.convertToRoman(11));
+    }
+
+    @Test
+    public void ifFourteenThenXIV(){
+        assertEquals("XIV", converter.convertToRoman(14));
+    }
+    @Test
+    public void ifFifteenThenXV(){
+        assertEquals("XIV", converter.convertToRoman(14));
+    }
+
+    @Test
+    public void ifSixteenThenXVI(){
+        assertEquals("XVI", converter.convertToRoman(16));
+    }
+
+    @Test
+    public void ifNineTeenThen(){
+        assertEquals("XIX", converter.convertToRoman(19));
+    }
+
+    @Test
+    public void ifTwentyThenXX(){
+        assertEquals("XX", converter.convertToRoman(20));
+    }
+
+    @Test
+    public void ifTwentyNineThenXXIX(){
+        assertEquals("XXIX", converter.convertToRoman(29));
+    }
+
+    @Test
+    public void ifThirtyNineThenXXXIX(){
+        assertEquals("XXXIX", converter.convertToRoman(39));
     }
 }

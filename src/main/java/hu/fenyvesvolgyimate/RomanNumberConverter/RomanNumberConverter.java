@@ -1,30 +1,56 @@
 package hu.fenyvesvolgyimate.RomanNumberConverter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RomanNumberConverter {
+    Map<Integer, String> defaultNumbers = new HashMap<>(){{
+        put(1, "I");
+        put(5, "V");
+        put(10, "X");
+    }};
     public String convertToRoman(int input) {
         checkInput(input);
         String result;
-        if (input <= 3)
-            result = printOneFor(input);
-        else if (input < 5)
-            result = printOnesBeforeFive(5 - input);
-        else if (input == 5)
-            result = "V";
-        else
-            result = printOnesAfterFive(input - 5);
+        if(defaultNumbers.get(input) != null)
+            return defaultNumbers.get(input);
+        if (input < 4)
+            result = printNumberFor(1, input);
+        else if(input < 9)
+            result = printNumbersByDistance(5,1, input);
+        else if (input < 14)
+            result = printNumbersByDistance(10,1, input);
+        else{
+            if(input % 10 != 0)
+                result = printNumberFor(10, input/10) + convertToRoman(input % 10);
+            else result = printNumberFor(10, input/10);
+        }
+
         return result;
     }
 
-    private String printOnesAfterFive(int numbersOfOne) {
-        return "V" + printOneFor(numbersOfOne);
+    private String printNumbersByDistance(int firstNumber, int secondNumber, int input){
+        int distance;
+        if(firstNumber > secondNumber)
+            distance = firstNumber - input;
+        else
+            distance = secondNumber - input;
+        String result;
+        if(distance < 0)
+            result = printNumberAfterNumberForTimes(firstNumber, secondNumber, Math.abs(distance));
+        else
+            result = printNumberAfterNumberForTimes(secondNumber, firstNumber, Math.abs(distance));
+        return result;
     }
 
-    private String printOnesBeforeFive(int numbersOfOne) {
-        return printOneFor(numbersOfOne) + "V";
+    private String printNumberAfterNumberForTimes(int firstNumber, int secondNumber, int timesSecond){
+        String firstRomanNumber = defaultNumbers.get(firstNumber);
+        String secondRomanNumber = defaultNumbers.get(secondNumber);
+        return firstRomanNumber + secondRomanNumber.repeat(timesSecond);
     }
 
-    private String printOneFor(int input) {
-        return "I".repeat(Math.max(0, input));
+    private String printNumberFor(int number, int times){
+        return defaultNumbers.get(number).repeat(times);
     }
 
     private void checkInput(int input) {
